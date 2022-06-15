@@ -7819,12 +7819,13 @@ textarea.form-control-lg {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical; }
 
+.custom-container {
+  max-width: 1400px; }
+
 .movie-index-card {
-  width: 19rem;
   border-width: 2px !important; }
 
 .movie-show-card {
-  width: 24rem;
   border-width: 0px !important; }
 
 /*# sourceMappingURL=style.css.map */
