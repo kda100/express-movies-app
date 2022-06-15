@@ -1,0 +1,30 @@
+<% layout("layouts/boilerplate") %>
+    <div class="container">
+        <div class="card mb-3 movie-show-card p-2 m-2">
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-8 col-md-4">
+                    <img src="<%=movie.poster_path%>" class="img-fluid rounded" alt="movie poster">
+                </div>
+                <div class="col-10 col-sm-8 col-md-8">
+                    <div class="card-body border-0">
+                        <h3 class="card-title mb-3">
+                            <%=movie.title%>
+                        </h3>
+                        <% if(movie.adult) {%>
+                            <img src="/assets/icons/no-one-under-18-48.png" class="img-fluid mb-2"
+                                alt="restricted to adults">
+                            <% }%>
+                                <h6 class="card-subtitle text-muted mb-3">
+                                    Rating: <%=movie.vote_average%>
+                                </h6>
+                                <h6 class="card-subtitle text-muted mb-3">
+                                    Release Date: <%=movie.release_date%>
+                                </h6>
+                                <p class="card-text">
+                                    <%=movie.overview%>
+                                </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,27 @@
+<% layout("layouts/boilerplate") %>
+    <div class="container">
+        <h1 class="text-sm-center my-2">
+            <%= currRouteData.pageTitle %>
+        </h1>
+        <div class="row justify-content-center justify-content-md-start">
+            <% for (let movie of movies){%>
+                <div class="col-10 col-sm-8 col-md-6 col-lg-4 col-xl-3 d-flex align-items-stretch">
+                    <div class="card border-secondary shadow p-3 my-2 m-sm-2 bg-body movie-index-card">
+                        <img src="<%=movie.poster_path%>" class="card-img-top rounded" alt="movie poster">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <%=movie.title%>
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                Rating: <%=movie.vote_average%>
+                            </h6>
+                            <p class="pv-archiveText">
+                                <%=movie.overview%>
+                            </p>
+                            <a href="/movies/<%=movie.id%> " class="btn btn-primary mt-auto">More Info...</a>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+        </div>
+    </div>

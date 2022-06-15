@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <span class="navbar-brand">Movies</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu"
+            aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+            <div class="navbar-nav">
+                <%for (const route in routes) {%>
+                    <a class="nav-item nav-link<%=typeof currRouteData !== 'undefined' && currRouteData===routes[route]
+                        ? " active" : "" %>"
+                        href="<%=routes[route].pageRoute%>">
+                            <%=routes[route].navTitle%>
+                    </a>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+</nav>
