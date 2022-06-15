@@ -7809,9 +7809,6 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
-.html {
-  font-size: 16px; }
-
 .navbar-toggler:focus {
   box-shadow: none; }
 
