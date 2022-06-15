@@ -7809,6 +7809,9 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
+.html {
+  font-size: 16px; }
+
 .navbar-toggler:focus {
   box-shadow: none; }
 
@@ -7820,11 +7823,11 @@ textarea.form-control-lg {
   -webkit-box-orient: vertical; }
 
 .movie-index-card {
-  width: 19rems;
+  width: 19rem;
   border-width: 2px !important; }
 
 .movie-show-card {
-  width: 24rems;
+  width: 24rem;
   border-width: 0px !important; }
 
 /*# sourceMappingURL=style.css.map */
