@@ -42,9 +42,10 @@ app.all("*", (req, res, next) => {
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) {
-        err.message = "Some went wrong!";
+        err.message = "Something went wrong!";
     }
-    res.status(statusCode).send(err.message);
+    console.log(err.message);
+    res.status(statusCode).render("error", { err });
 })
 
 app.listen(port, () => {
