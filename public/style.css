@@ -7819,6 +7819,11 @@ textarea.form-control-lg {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical; }
 
+.form-constraint {
+  max-width: 800px;
+  margin: 0 auto;
+  float: none; }
+
 .custom-container {
   max-width: 1400px; }
 

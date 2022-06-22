@@ -1,0 +1,8 @@
+<% layout("userViews/userBase") %>
+    <form action="<%=currRouteData.pageRoute%>" method="POST" class="needs-validation" novalidate>
+        <%-createFormField("username", "text" )%>
+            <%-createFormField("password", "password" )%>
+                <button class="btn btn-success btn-block">
+                    <%= currRouteData.pageTitle%>
+                </button>
+    </form>

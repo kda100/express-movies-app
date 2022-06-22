@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container-fluid">
         <span class="navbar-brand">Movies</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu"
@@ -7,13 +7,14 @@
         </button>
         <div class="collapse navbar-collapse" id="toggleMobileMenu">
             <div class="navbar-nav">
-                <%for (const route in routes) {%>
-                    <a class="nav-item nav-link<%=typeof currRouteData !== 'undefined' && currRouteData===routes[route]
-                        ? " active" : "" %>"
-                        href="<%=routes[route].pageRoute%>">
-                            <%=routes[route].navTitle%>
-                    </a>
-                    <% } %>
+                <%for (const route in movieRoutes) {%>
+                    <%- createNavLink(movieRoutes, route, currRouteData, currUser)%>
+                        <% } %>
+            </div>
+            <div class="navbar-nav ms-auto">
+                <%for (const route in userRoutes) {%>
+                    <%- createNavLink(userRoutes, route, currRouteData, currUser)%>
+                        <% } %>
             </div>
         </div>
     </div>

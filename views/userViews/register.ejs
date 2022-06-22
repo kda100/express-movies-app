@@ -1,0 +1,13 @@
+<% layout("userViews/userBase") %>
+    <form action="<%=currRouteData.pageRoute%>" method="POST" class="needs-validation" novalidate>
+        <%-createFormField("username", "text" , {pattern: "^[a-zA-Z0-9]{3,30}$" ,
+            errorMessage: "Username must have at least 3 characters, with only letters and numbers" })%>
+            <%-createFormField("email", "email" )%>
+                <%-createFormField("password", "password" ,
+                    {pattern: "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$" ,
+                    errorMessage: "Password must have at least 8 characters, with at least 1 number, letter and special character"
+                    } )%>
+                    <button class="btn btn-success btn-block">
+                        <%= currRouteData.pageTitle%>
+                    </button>
+    </form>

@@ -1,5 +1,4 @@
 const axios = require("axios");
-const RouteData = require("../models/routeData");
 
 const baseUrl = "https://api.themoviedb.org/3/movie/";
 
@@ -34,29 +33,29 @@ async function getMovie(id) {
 exports.renderMoviesNowPlaying = async (req, res) => {
     const movies = (await getMoviesList("now_playing"));
     console.log(movies);
-    res.render("movies/index", { currRouteData: res.locals.routes.nowPlaying, movies });
+    res.render("movieViews/index", { currRouteData: res.locals.movieRoutes.nowPlaying, movies });
 }
 
 exports.renderMoviesPopular = async (req, res) => {
     const movies = (await getMoviesList("popular"));
     console.log(movies);
-    res.render("movies/index", { currRouteData: res.locals.routes.popular, movies });
+    res.render("movieViews/index", { currRouteData: res.locals.movieRoutes.popular, movies });
 }
 
 exports.renderMoviesTopRated = async (req, res) => {
     const movies = (await getMoviesList("top_rated"));
     console.log(movies);
-    res.render("movies/index", { currRouteData: res.locals.routes.topRated, movies });
+    res.render("movieViews/index", { currRouteData: res.locals.movieRoutes.topRated, movies });
 }
 
 exports.renderMoviesUpcoming = async (req, res) => {
     const movies = (await getMoviesList("upcoming"));
     console.log(movies);
-    res.render("movies/index", { currRouteData: res.locals.routes.upcoming, movies });
+    res.render("movieViews/index", { currRouteData: res.locals.movieRoutes.upcoming, movies });
 }
 
 exports.renderMovie = async (req, res) => {
     const movie = await getMovie(req.params.id);
     console.log(movie);
-    res.render("movies/show", { movie });
+    res.render("movieViews/show", { currRouteData: null, movie });
 }

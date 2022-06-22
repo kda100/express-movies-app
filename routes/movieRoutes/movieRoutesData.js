@@ -1,4 +1,4 @@
-const RouteData = require("../models/routeData");
+const RouteData = require("../../utils/RouteData");
 
 const nowPlayingRouteData = new RouteData("/movies/now_playing", "Now In Cinema", "Now Playing");
 const popularRouteData = new RouteData("/movies/popular", "Current Most Popular", "Popular");

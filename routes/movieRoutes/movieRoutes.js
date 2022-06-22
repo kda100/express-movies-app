@@ -1,19 +1,8 @@
 const express = require('express');
-const moviesController = require("../controllers/moviesController");
-const catchAsync = require('../utils/catchAsync');
-const movieRoutesData = require("../constants/movieRoutesData");
+const moviesController = require("../../controllers/moviesController");
+const catchAsync = require('../../utils/catchAsync');
 
 const router = express.Router();
-
-router.use(function (req, res, next) {
-    res.locals.routes = {
-        nowPlaying: movieRoutesData.nowPlayingRouteData,
-        popular: movieRoutesData.popularRouteData,
-        topRated: movieRoutesData.topRatedRouteData,
-        upcoming: movieRoutesData.upcomingRouteData
-    };
-    next();
-});
 
 router.route("/now_playing").get(catchAsync(moviesController.renderMoviesNowPlaying));
 
