@@ -8,12 +8,12 @@
         <div class="collapse navbar-collapse" id="toggleMobileMenu">
             <div class="navbar-nav">
                 <%for (const route in movieRoutes) {%>
-                    <%- createNavLink(movieRoutes, route, currRouteData, currUser)%>
+                    <%- createNavLink(movieRoutes[route], currRouteData, currUser)%>
                         <% } %>
             </div>
             <div class="navbar-nav ms-auto">
                 <%for (const route in userRoutes) {%>
-                    <%- createNavLink(userRoutes, route, currRouteData, currUser)%>
+                    <%- createNavLink(userRoutes[route], currRouteData, currUser)%>
                         <% } %>
             </div>
         </div>
