@@ -14,6 +14,18 @@
                             <img src="/assets/icons/no-one-under-18-48.png" class="img-fluid mb-2"
                                 alt="restricted to adults">
                             <% }%>
+                                <form action="<%=userRoutes.favourites.pageRoute%>/<%=movie.id%>?_method=PUT"
+                                    method="POST">
+                                    <input type="hidden" id="id" name="id" value=<%=movie.id%> >
+                                    <%if(currUser !==null && currUser.favouriteMovies.includes(movie.id)) {%>
+                                        <button id="favourite" class="bi bi-star-fill mb-2 p-0" type="submit"
+                                            style="color: gold;">
+                                        </button>
+                                        <% } else { %>
+                                            <button id="favourite" class="bi bi-star mb-2 p-0" type="submit">
+                                            </button>
+                                            <% } %>
+                                </form>
                                 <h6 class="card-subtitle text-muted mb-3">
                                     Rating: <%=movie.vote_average%>
                                 </h6>

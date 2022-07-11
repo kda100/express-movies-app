@@ -5,7 +5,8 @@ const ExpressError = require("../utils/ExpressError");
 exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash("error", "You must be logged in to do that");
-        return res.redirect(res.locals.movieRoutes.nowPlaying)
+        console.log(res.locals.userRoutes.login);
+        return res.redirect(res.locals.userRoutes.login.pageRoute);
     }
     next();
 }

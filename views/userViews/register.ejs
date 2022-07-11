@@ -1,5 +1,5 @@
 <% layout("userViews/userBase") %>
-    <form action="<%=currRouteData.pageRoute%>" method="POST" class="needs-validation" novalidate>
+    <form action="<%=userRoutes.register.pageRoute%>" method="POST" class="needs-validation" novalidate>
         <%-createFormField("username", "text" , {pattern: "^[a-zA-Z0-9]{3,30}$" ,
             errorMessage: "Username must have at least 3 characters, with only letters and numbers" })%>
             <%-createFormField("email", "email" )%>

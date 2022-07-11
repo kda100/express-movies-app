@@ -28,6 +28,7 @@ app.engine("ejs", ejsmate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.locals.movies = {};
 app.locals.createFormField = require("./public/javascripts/createFormField");
 app.locals.createNavLink = require("./public/javascripts/createNavLink");
 
@@ -47,25 +48,15 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(function (req, res, next) {
-    res.locals.movieRoutes = {
-        nowPlaying: movieRoutesData.nowPlayingRouteData,
-        popular: movieRoutesData.popularRouteData,
-        topRated: movieRoutesData.topRatedRouteData,
-        upcoming: movieRoutesData.upcomingRouteData
-    };
-    res.locals.userRoutes = {
-        login: userRoutesData.loginRouteData,
-        register: userRoutesData.registerRouteData,
-        account: userRoutesData.accountRouteData,
-        logout: userRoutesData.logoutRouteData,
-    }
+    res.locals.movieRoutes = movieRoutesData;
+    res.locals.userRoutes = userRoutesData;
     res.locals.currUser = req.user || null;
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
 });
 
-app.use("/", userRoutes);
+app.use('/user', userRoutes);
 app.use('/movies', movieRoutes);
 
 

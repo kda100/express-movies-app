@@ -1,8 +1,9 @@
 const RouteData = require("../../utils/RouteData");
 
-const registerRouteData = new RouteData("/register", "Register", "Register", false);
-const loginRouteData = new RouteData("/login", "Login", "Login", false);
-const logoutRouteData = new RouteData("/logout", "Logout", "Logout", true);
-const accountRouteData = new RouteData("/account", "My Account Details", "My Account", true);
+const register = new RouteData("/user/register", "Register", "Register", false);
+const login = new RouteData("/user/login", "Login", "Login", false);
+const logout = new RouteData("/user/logout", "Logout", "Logout", true);
+const account = new RouteData("/user/account", "My Account Details", "Account", true);
+const favourites = new RouteData("/user/favourites", "My Favourites", "Favourites", true);
 
-module.exports = { registerRouteData, loginRouteData, logoutRouteData, accountRouteData: accountRouteData };
+module.exports = { register, login, favourites, account, logout };

@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const moviesHelper = require("../helpers/moviesHelper");
 
 exports.renderRegisterForm = async (req, res) => {
     res.render("userViews/register", { currRouteData: res.locals.userRoutes.register });
@@ -39,10 +40,26 @@ exports.logout = async (req, res) => {
     });
 }
 
-exports.account = async (req, res) => {
-    if (req.user) {
-        res.render("userViews/account", { currRouteData: res.locals.userRoutes.account.pageRoute });
-    } else {
-        res.redirect(res.locals.userRoutes.login.pageRoute);
+exports.renderAccountDetails = async (req, res) => {
+    res.render("userViews/account", { currRouteData: res.locals.userRoutes.account });
+}
+
+exports.toggleFavourite = async (req, res) => {
+    const favouriteMovies = req.user.favouriteMovies;
+    const movieId = req.body.id;
+    favouriteMovies.indexOf(movieId) === -1 ? favouriteMovies.push(movieId) : favouriteMovies.remove(movieId);
+    await req.user.save();
+    console.log(req.user);
+    res.redirect(`/movies/${req.body.id}`);
+}
+
+exports.renderFavourites = async (req, res) => {
+    const movies = [];
+    const favouriteMoviesIds = req.user.favouriteMovies;
+    for (let i = 0; i < favouriteMoviesIds.length; i++) {
+        const movieId = favouriteMoviesIds[i];
+        const movie = await moviesHelper.getFavouriteMovie(`/${movieId}`);
+        movies.push(movie);
     }
+    res.render("movieViews/index", { currRouteData: res.locals.userRoutes.favourites, movies });
 }
