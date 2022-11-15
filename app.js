@@ -1,23 +1,23 @@
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
+  require("dotenv").config();
 }
 
-const express = require('express');
+const express = require("express");
 const ejsmate = require("ejs-mate");
-const sassMiddleware = require("node-sass-middleware");
+// const sassMiddleware = require("node-sass-middleware");
 const passport = require("passport");
 const session = require("express-session");
 const path = require("path");
 const flash = require("connect-flash");
 
 const ExpressError = require("./utils/ExpressError");
-const mongoInit = require("./databases/mongoInit");
+const mongoInit = require("./services/mongoInit");
 require("./auth/passportInit");
 
 const movieRoutesData = require("./routes/movieRoutes/movieRoutesData");
-const userRoutesData = require("./routes/userRoutes/userRoutesData")
+const userRoutesData = require("./routes/userRoutes/userRoutesData");
 
-const movieRoutes = require('./routes/movieRoutes/movieRoutes');
+const movieRoutes = require("./routes/movieRoutes/movieRoutes");
 const userRoutes = require("./routes/userRoutes/userRoutes");
 
 const app = express();
@@ -32,52 +32,52 @@ app.locals.movies = {};
 app.locals.createFormField = require("./public/javascripts/createFormField");
 app.locals.createNavLink = require("./public/javascripts/createNavLink");
 
-app.use(sassMiddleware({
-    src: path.join(__dirname, "bootstrap"),
-    dest: path.join(__dirname, "public"),
-    indentedSyntax: true,
-    sourceMap: true,
-    debug: true,
-    prefix: "/"
-}));
+// app.use(
+//   sassMiddleware({
+//     src: path.join(__dirname, "bootstrap"),
+//     dest: path.join(__dirname, "public"),
+//     indentedSyntax: true,
+//     sourceMap: true,
+//     debug: true,
+//     prefix: "/",
+//   })
+// );
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(session(mongoInit.sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
 app.use(function (req, res, next) {
-    res.locals.movieRoutes = movieRoutesData;
-    res.locals.userRoutes = userRoutesData;
-    res.locals.currUser = req.user || null;
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
-    next();
+  res.locals.movieRoutes = movieRoutesData;
+  res.locals.userRoutes = userRoutesData;
+  res.locals.currUser = req.user || null;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
 });
 
-app.use('/user', userRoutes);
-app.use('/movies', movieRoutes);
-
+app.use("/user", userRoutes);
+app.use("/movies", movieRoutes);
 
 app.get("/", (req, res) => {
-    res.redirect(res.locals.movieRoutes.nowPlaying.pageRoute);
+  res.redirect(res.locals.movieRoutes.nowPlaying.pageRoute);
 });
 
 app.all("*", (req, res, next) => {
-    next(new ExpressError("Page Not Found", 404));
+  next(new ExpressError("Page Not Found", 404));
 });
 
 app.use((err, req, res, next) => {
-    const { statusCode = 500 } = err;
-    if (!err.message) {
-        err.message = "Something went wrong!";
-    }
-    console.log(err.message);
-    res.status(statusCode).render("error", { currRouteData: null, err });
-})
-
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+  const { statusCode = 500 } = err;
+  if (!err.message) {
+    err.message = "Something went wrong!";
+  }
+  console.log(err.message);
+  res.status(statusCode).render("error", { currRouteData: null, err });
 });
 
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
