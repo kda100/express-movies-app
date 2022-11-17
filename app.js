@@ -50,6 +50,7 @@ app.use(passport.session());
 app.use(flash());
 
 app.use(function (req, res, next) {
+  console.log(movieRoutesData);
   res.locals.movieRoutes = movieRoutesData;
   res.locals.userRoutes = userRoutesData;
   res.locals.currUser = req.user || null;
