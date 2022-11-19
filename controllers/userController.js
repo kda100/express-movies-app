@@ -64,7 +64,7 @@ exports.renderFavourites = async (req, res) => {
   const favouriteMoviesIds = req.user.favouriteMovies;
   for (let i = 0; i < favouriteMoviesIds.length; i++) {
     const movieId = favouriteMoviesIds[i];
-    const movie = await moviesHelper.getFavouriteMovie(`/${movieId}`);
+    const movie = await moviesApi.getFavouriteMovie(`/${movieId}`);
     movies.push(movie);
   }
   res.render("movieViews/index", {
